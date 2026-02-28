@@ -35,7 +35,10 @@ public class SecurityConfiguration {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
-    
+    @Bean
+    DatabaseUserDetailService userDetailService() {
+        return new DatabaseUserDetailService();
+    }
 
     @Bean
     DaoAuthenticationProvider authenticationProvider(){
