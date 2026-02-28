@@ -1,12 +1,23 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <body>
     <nav th:fragment="navbar" class="navbar navbar-dark bg-dark">
-        <div class="container-fluid justify-content-center">
+        <div class="container-fluid">
+            <div style="width: 200px;"></div>
+
             <a class="navbar-brand fs-2 fw-bold mx-auto" th:href="@{/}">Pizzeria</a>
+
+            <div class="d-flex align-items-center gap-3" style="width: 200px; justify-content: flex-end;">
+                <span sec:authorize="isAuthenticated()" class="text-white">
+                    Ciao, <strong sec:authentication="name"></strong>!
+                </span>
+                <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+                    <button type="submit" class="btn btn-outline-danger btn-sm">Logout</button>
+                </form>
+            </div>
+
         </div>
     </nav>
 </body>
-
 </html>
